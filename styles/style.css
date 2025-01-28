@@ -1,7 +1,7 @@
 /* Reset básico */
 * {
     margin: 0; /* Remove margens padrão de todos os elementos */
-    padding: 0; /* Remove padding padrão de todos os elementos */
+    padding: 0; /* Remove padding padrão de todos os elementos . */
     box-sizing: border-box; /* Inclui bordas e padding no cálculo do tamanho total do elemento */
 }
   
