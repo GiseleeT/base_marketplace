@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Metadados essenciais -->
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Torna o site responsivo em dispositivos móveis -->
+  <title>Marketplace</title> <!-- Título da página exibido na aba do navegador -->
+  <link rel="stylesheet" href="styles/style.css"> <!-- Importa o arquivo de estilos CSS -->
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header class="header">
+    <!-- Logo do Marketplace -->
+    <div class="logo">Marketplace</div>
+    <!-- Barra de busca para filtrar produtos -->
+    <input type="text" placeholder="Buscar produtos..." class="search-bar">
+  </header>
+
+  <!-- Seção de Produtos -->
+  <main class="product-grid">
+    <!-- Produto Exemplo -->
+    <div class="product-card">
+      <img src="assets/images/product1.jpg" alt="Produto 1" class="product-image"> <!-- Imagem do produto -->
+      <h3 class="product-name">Produto 1</h3> <!-- Nome do produto -->
+      <p class="product-price">$50.00</p> <!-- Preço do produto -->
+      <button class="add-to-cart">Adicionar ao Carrinho</button> <!-- Botão para adicionar ao carrinho -->
+    </div>
+    <!-- Produtos adicionais serão adicionados dinamicamente via JavaScript -->
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <!-- Informações de copyright -->
+    <p>&copy; 2025 Marketplace. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Inclusão do arquivo JavaScript -->
+  <script src="scripts/app.js" defer></script>
+  <!-- Carrega o script de forma assíncrona após o carregamento do HTML -->
+</body>
+
+</html>

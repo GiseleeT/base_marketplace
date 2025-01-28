@@ -1,0 +1,96 @@
+/* Reset básico */
+* {
+    margin: 0; /* Remove margens padrão de todos os elementos */
+    padding: 0; /* Remove padding padrão de todos os elementos */
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo do tamanho total do elemento */
+}
+  
+body {
+    font-family: Arial, sans-serif; /* Define uma fonte padrão para o texto */
+    line-height: 1.5; /* Ajusta a altura das linhas para melhorar a legibilidade */
+    background-color: #f9f9f9; /* Define uma cor de fundo clara */
+    color: #333; /* Define a cor do texto padrão */
+}
+  
+/* Cabeçalho */
+.header {
+    display: flex; /* Usa flexbox para organizar os itens horizontalmente */
+    justify-content: space-between; /* Distribui os itens com espaço entre eles */
+    align-items: center; /* Alinha os itens ao centro verticalmente */
+    padding: 1rem 2rem; /* Adiciona espaçamento interno ao redor do cabeçalho */
+    background-color: #007bff; /* Define a cor de fundo azul */
+    color: white; /* Define a cor do texto como branca */
+}
+  
+.logo {
+    font-size: 1.5rem; /* Define o tamanho da fonte para o logo */
+    font-weight: bold; /* Torna o texto do logo em negrito */
+}
+  
+.search-bar {
+    padding: 0.5rem; /* Adiciona espaçamento interno */
+    width: 300px; /* Define a largura da barra de pesquisa */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Arredonda os cantos */
+}
+  
+/* Grid de Produtos */
+.product-grid {
+    display: grid; /* Usa grid layout para organizar os produtos */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria colunas responsivas */
+    gap: 1rem; /* Adiciona espaço entre os itens do grid */
+    padding: 2rem; /* Adiciona espaçamento ao redor do grid */
+}
+  
+.product-card {
+    background: white; /* Define a cor de fundo branca para os cartões */
+    border: 1px solid #ddd; /* Adiciona uma borda cinza clara */
+    border-radius: 8px; /* Arredonda os cantos do cartão */
+    overflow: hidden; /* Esconde conteúdo que ultrapasse os limites do cartão */
+    text-align: center; /* Centraliza o texto dentro do cartão */
+    padding: 1rem; /* Adiciona espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+}
+  
+.product-image {
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do cartão */
+    height: auto; /* Mantém as proporções da imagem */
+}
+  
+.product-name {
+    margin: 0.5rem 0; /* Adiciona espaço acima e abaixo do nome do produto */
+    font-size: 1.2rem; /* Define o tamanho da fonte para o nome */
+}
+  
+.product-price {
+    font-size: 1rem; /* Define o tamanho da fonte para o preço */
+    color: #007bff; /* Define a cor do texto azul */
+}
+  
+.add-to-cart {
+    background: #007bff; /* Define a cor de fundo azul */
+    color: white; /* Define a cor do texto como branca */
+    border: none; /* Remove a borda padrão */
+    padding: 0.5rem 1rem; /* Adiciona espaçamento interno */
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Altera o cursor para indicar clicabilidade */
+    transition: background 0.3s; /* Adiciona uma transição suave para o fundo */
+}
+  
+.add-to-cart:hover {
+    background: #0056b3; /* Altera a cor de fundo ao passar o mouse */
+}
+  
+/* Rodapé */
+.footer {
+    position: fixed; /* Fixa o rodapé na tela */
+    bottom: 0; /* Alinha o rodapé na parte inferior */
+    left: 0; /* Garante que o rodapé comece na extremidade esquerda */
+    width: 100%; /* Ocupa toda a largura da tela */
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    padding: 1rem 0; /* Espaçamento interno */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+    z-index: 1000; /* Garante que o rodapé fique acima de outros elementos */
+}
