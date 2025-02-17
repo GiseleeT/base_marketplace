@@ -1,41 +1,25 @@
 // Simulação de dados
 const products = [
-    { 
-        id: 1, 
-        name: "Produto 1", 
-        price: 50, 
-        image: "assets/images/product1.jpg" 
-    },
-    { id: 2, 
-        name: "Produto 2", 
-        price: 75, 
-        image: "assets/images/product2.jpg" },
-
-    { id: 3,
-         name: "Produto 3",
-          price: 100,
-           image: "assets/images/product3.jpg" },
-
-    {
-        id:4 ,
-         name:"mesa" ,
-          price:67.00, 
-           image:"assets/images/product3.jpg"
-    }, 
-
-    {
-        id:5,
-        name:"toalha",
-        price:99.00,
-        image:"assets/images/product3.jpg",
-    }
-   
+    { id: 1, name: "Produto 1", price: 50, image: "assets/images/product1.jpg" },
+    { id: 2, name: "Produto 2", price: 75, image: "assets/images/product2.jpg" },
+    { id: 3, name: "Produto 3", price: 100, image: "assets/images/product3.jpg" },
+    { id: 4, name: "Mesa", price: 67.00, image: "assets/images/product4.jpg" },
+    { id: 5, name: "Toalha", price: 99.00, image: "assets/images/product5.jpg" }
 ];
 // Lista de produtos simulada, cada produto contém id, nome, preço e imagem.
 
 // Seleção dos elementos do DOM
 const productGrid = document.querySelector('.product-grid'); // Seleciona o container que exibe os produtos.
 const searchBar = document.querySelector('.search-bar'); // Seleciona a barra de busca.
+
+// novo
+const cartContainer = document.querySelector('.cart-items'); // Contêiner do carrinho
+const cartCount = document.querySelector('.cart-count'); // Para mostrar a quantidade de itens no carrinho
+const cartTotal = document.querySelector('.total-price'); // Para mostrar o total do carrinho
+
+// Carrinho de compras
+let cart = [];
+
 
 // Função para renderizar os produtos
 function renderProducts(productsToRender) {
@@ -50,9 +34,76 @@ function renderProducts(productsToRender) {
               <button class="add-to-cart" data-id="${product.id}">Adicionar ao Carrinho</button>
             </div>
         `;
-        productGrid.insertAdjacentHTML('beforeend', productHTML); // Insere o HTML do produto no grid.
+        productGrid.insertAdjacentHTML('beforeend', productHTML);
+    });
+
+    // Adiciona evento aos botões de "Adicionar ao Carrinho"
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', handleAddToCart);
     });
 }
+
+
+
+// Função para adicionar um produto ao carrinho
+function handleAddToCart(event) {
+    const productId = parseInt(event.target.getAttribute('data-id')); 
+    if (isNaN(productId)) return; // Evita erro caso o ID seja inválido
+
+    const product = products.find(p => p.id === productId);
+    if (!product) return; // Evita erro se o produto não existir
+
+    // Verifica se o produto já está no carrinho
+    const productInCart = cart.find(item => item.id === productId);
+    if (productInCart) {
+        productInCart.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCart(); // Atualiza o carrinho
+}
+
+// Função para atualizar a exibição do carrinho
+function updateCart() {
+    cartContainer.innerHTML = ''; // Limpa o carrinho
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Carrinho vazio</p>';
+        cartTotal.textContent = 'Total: $0.00';
+        return;
+    }
+
+    let total = 0;
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        const itemHTML = `
+            <li>${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</li>
+        `;
+        cartContainer.insertAdjacentHTML('beforeend', itemHTML);
+    });
+
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+// Função para renderizar os itens no carrinho
+function renderCartItems() {
+    cartContainer.innerHTML = ''; // Limpa o conteúdo atual do carrinho
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Carrinho vazio</p>';
+    } else {
+        cart.forEach(item => {
+            const itemHTML = `
+                <div class="cart-item">
+                    <p>${item.name} x ${item.quantity}</p>
+                    <p>$${(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+            `;
+            cartContainer.insertAdjacentHTML('beforeend', itemHTML);
+        });
+    }
+}
+
 
 // Event Listener para a barra de busca
 function debounce(func, delay) {
@@ -82,79 +133,5 @@ const handleSearch = (e) => {
 searchBar.addEventListener('input', debounce(handleSearch, 300));
 
 // Inicialização
-renderProducts(products); // Renderiza todos os produtos ao carregar a página.
-
-
-
-
-
-
-// Seleciona os elementos
-const cartContainer = document.getElementById('cart-container');
-const productsContainer = document.getElementById('products-container');
-
-// Recupera o carrinho do localStorage ou inicia um vazio
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Função para salvar o carrinho no localStorage
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Função para renderizar os produtos disponíveis
-function renderProducts() {
-    const products = [
-        { id: 1, name: "Produto A", price: 50 },
-        { id: 2, name: "Produto B", price: 30 },
-        { id: 3, name: "Produto C", price: 70 }
-    ];
-
-    productsContainer.innerHTML = products.map(product => `
-        <div class="product">
-            <h3>${product.name}</h3>
-            <p>R$ ${product.price}</p>
-            <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Adicionar ao Carrinho</button>
-        </div>
-    `).join('');
-}
-
-// Função para adicionar um produto ao carrinho
-function addToCart(id, name, price) {
-    const itemIndex = cart.findIndex(item => item.id === id);
-
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity++;
-    } else {
-        cart.push({ id, name, price, quantity: 1 });
-    }
-
-    saveCart();
-    renderCart();
-}
-
-// Função para remover um produto do carrinho
-function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
-    saveCart();
-    renderCart();
-}
-
-// Função para renderizar o carrinho
-function renderCart() {
-    if (cart.length === 0) {
-        cartContainer.innerHTML = "<p>O carrinho está vazio</p>";
-        return;
-    }
-
-    cartContainer.innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <h4>${item.name} (x${item.quantity})</h4>
-            <p>R$ ${item.price * item.quantity}</p>
-            <button onclick="removeFromCart(${item.id})">Remover</button>
-        </div>
-    `).join('');
-}
-
-// Inicializa a página
-renderProducts();
-renderCart();
+renderProducts(products); // Renderiza todos os produtos ao carregar a página
+updateCart(); // Atualiza o carrinho na inicialização
