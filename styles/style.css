@@ -170,3 +170,19 @@ body {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
     z-index: 1000; /* Garante que o rodapé fique acima de outros elementos */
 }
+
+
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .logout-button:hover {
+    background-color: #cc0000;
+  }

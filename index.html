@@ -20,32 +20,16 @@
 
   </header>
 
-  <!-- Seção de Produtos -->
-  <main class="product-grid">
-    <!-- Produto Exemplo -->
-    <div class="product-card"></div>
-      <img src="assets/images/product1.jpg" alt="Produto 1" class="product-image"> <!-- Imagem do produto -->
-      <h3 class="product-name">Produto 1</h3> <!-- Nome do produto -->
-      <p class="product-price">$50.00</p> <!-- Preço do produto -->
-      <button class="add-to-cart">Adicionar ao Carrinho</button> <!-- Botão para adicionar ao carrinho -->
-    </div>
-    <!-- Produtos adicionais serão adicionados dinamicamente via JavaScript -->
-  </main>
-
-<!-- novo -->
-<div class="cart">
-  <h2>Carrinho de Compras</h2>
-  <ul class="cart-items"></ul>
-  <p class="total-price">Total: $0.00</p>
-  <button class="clear-cart">Limpar Carrinho</button>
-  <span class="cart-count">0</span>
-</div>
-
+   
+  <main id="product-grid" class="product-grid"></main>
+  
 
   <!-- Rodapé -->
   <footer class="footer">
     <!-- Informações de copyright -->
     <p>&copy; 2025 Marketplace. Todos os direitos reservados.</p>
+
+    <button class="logout-button" onclick="window.location.href='main.html'">Sair</button>
   </footer>
 
   <!-- Inclusão do arquivo JavaScript -->
